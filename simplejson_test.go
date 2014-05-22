@@ -91,6 +91,10 @@ func TestSimplejson(t *testing.T) {
 
 	js.Set("test2", "setTest")
 	assert.Equal(t, "setTest", js.Get("test2").MustString())
+
+	js.Del("test2")
+	_, r := js.CheckGet("test2")
+	assert.Equal(t, false, r)
 }
 
 func TestStdlibInterfaces(t *testing.T) {

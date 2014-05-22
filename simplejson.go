@@ -61,6 +61,18 @@ func (j *Json) Get(key string) *Json {
 	return &Json{nil}
 }
 
+// Del delete 'key' from json
+//   js.Get("test").Del("string")
+func (j *Json) Del(key string) error {
+	m, err := j.Map()
+	if err != nil {
+		return errors.New("Delete key from json failed!")
+	}
+	delete(m, key)
+	j = &Json{m}
+	return nil
+}
+
 // GetPath searches for the item as specified by the branch
 // without the need to deep dive using Get()'s.
 //
